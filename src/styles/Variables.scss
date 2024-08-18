@@ -1,0 +1,40 @@
+// src/styles/Variables.scss
+
+// Colors
+//$color-primary: #; // 主要顏色
+//$color-secondary: #; // 次要顏色
+$color-background: #ffffff; // 背景顏色
+$color-text-primary: #000000; // 主要文字顏色
+$color-text-secondary: #828282; // 次要文字顏色
+$color-border: #e0e0e0; // 邊框顏色
+$color-error: #d32f2f; // 錯誤顏色
+$color-warning: #ff9800; // 警告顏色
+$color-success: #4caf50; // 成功顏色
+$color-info: #2196f3; // 信息顏色
+
+// Font settings
+$font-family-base: 'Inter', sans-serif; // 基本字體家族
+$font-size-base: 16px; // 基本字體大小
+$font-size-large: 20px; // 大字體大小
+$font-size-small: 14px; // 小字體大小
+$font-weight-normal: 400; // 正常字體粗細
+$font-weight-bold: 700; // 粗體字體粗細
+
+// Spacing
+$spacing-unit: 8px; // 間距單位
+$spacing-small: $spacing-unit * 0.5; // 小間距
+$spacing-medium: $spacing-unit; // 中間距
+$spacing-large: $spacing-unit * 2; // 大間距
+
+// Border
+$border-radius: 4px; // 邊框圓角
+$border-width: 1px; // 邊框寬度
+$border-style: solid; // 邊框樣式
+
+// Shadows
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // 盒陰影
+
+// Z-index
+$z-index-modal: 1050; // 模態框
+$z-index-dropdown: 1000; // 下拉菜單
+$z-index-tooltip: 1070; // 工具提示
