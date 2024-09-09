@@ -15,12 +15,21 @@
       <div class="header-user">
         <img src="../assets/user-avatar.svg" alt="User Avatar" />
         <span>用戶名稱</span>
-        <button class="header-logout">登出</button>
+        <button class="header-logout" @click="handleLogout">登出</button>
       </div>
     </div>
   </header>
 </template>
-
+<script>
+export default {
+  methods: {
+    handleLogout() {
+      // 模擬登出行為，並跳轉到登入頁面
+      this.$router.push('/login');
+    }
+  }
+}
+</script>
 <style lang="sass" scoped>
 .header
   display: flex

@@ -46,7 +46,32 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      errorMessage: '', // 錯誤訊息
+    };
+  },
+  methods: {
+    handleLogin() {
+      if (this.username === 'test2024' && this.password === 'test2024') {
+        // 驗證成功，重定向到主頁或其他頁面
+        this.$router.push('/');
+      } else {
+        // 驗證失敗，顯示錯誤訊息
+        this.errorMessage = '帳號或密碼錯誤';
+      }
+    },
+    handleChangePassword() {
+      // 忘記密碼或其他操作
+    },
+  },
+};
+</script>
+
 
 <style lang="sass" scoped>
 .flex
