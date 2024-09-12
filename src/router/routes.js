@@ -12,10 +12,10 @@ const routes = [
     ],
   },
   {
-    path: '/login',
+    path: '/',
     component: () => import('@/layouts/LoginLayout.vue'),
     children: [
-      { path: '', component: () => import('@/pages/LoginPage.vue') },
+      { path: 'login', component: () => import('@/pages/LoginPage.vue') },
     ],
   },
   {
