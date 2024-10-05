@@ -3,7 +3,7 @@
     <div class="header-left">
       <nav class="header-nav">
         <ul>
-          <li class="li-first"><router-link to ="/">ISO / FSSC 專區</router-link></li>
+          <li class="li-first"><router-link to="/">ISO / FSSC 專區</router-link></li>
           <li><a href="#">常用功能</a></li>
           <li><a href="#">管理專區 (ISO)</a></li>
           <li><a href="#">ISO/FSSC 專區</a></li>
@@ -20,16 +20,33 @@
     </div>
   </header>
 </template>
+
 <script>
+import axios from 'axios';
+
 export default {
   methods: {
-    handleLogout() {
-      // 模擬登出行為，並跳轉到登入頁面
-      this.$router.push('/login');
+    async handleLogout() {
+      try {
+        // 發送登出請求到指定 URL
+        const response = await axios.post('https://fsiback.ptchen.tw/logout');
+        
+        // 如果成功，清除本地存儲並跳轉到登入頁面
+        if (response.status === 200) {
+          localStorage.removeItem('authToken');
+          this.$router.push('/login');
+        } else {
+          console.error('登出失敗，請稍後再試');
+        }
+      } catch (error) {
+        console.error('登出失敗:', error);
+      }
     }
   }
 }
 </script>
+
+
 <style lang="sass" scoped>
 .header
   display: flex
@@ -46,6 +63,7 @@ export default {
 .header-logo img
   height: 40px
   margin-right: 16px
+
 .header-nav ul
   display: flex
   list-style: none
@@ -86,6 +104,7 @@ export default {
   font-size: 16px
   color: #007bff
   cursor: pointer
+
 .li-first
   margin-left: 30px
   margin-right: 60px

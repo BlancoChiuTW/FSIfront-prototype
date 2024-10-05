@@ -15,7 +15,7 @@ const routes = [
     path: '/',
     component: () => import('@/layouts/LoginLayout.vue'),
     children: [
-      { path: 'login', component: () => import('@/pages/LoginPage.vue') },
+      { path: 'login', component: () => import('@/pages/LoginPage.vue') },  // 保持login子路徑
     ],
   },
   {
@@ -69,6 +69,8 @@ const routes = [
       },
     ],
   },
+  // 捕獲所有未匹配的路徑，並重定向到首頁或自定義的 404 頁面
+  { path: '/:catchAll(.*)', redirect: '/' },
 ];
 
 const router = createRouter({

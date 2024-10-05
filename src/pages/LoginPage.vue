@@ -26,6 +26,9 @@
             placeholder="密碼"
           />
         </div>
+        <!-- 顯示錯誤訊息 -->
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+        
         <button type="submit" class="login-button">登入</button>
         <div class="forgot-password-container">
           <span class="line"></span>
@@ -38,15 +41,17 @@
           </button>
           <span class="line"></span>
         </div>
-           <router-link to="/register" class="register-button" >
-            註冊
-           </router-link>
+        <router-link to="/register" class="register-button">
+          註冊
+        </router-link>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -56,13 +61,24 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      if (this.username === 'test2024' && this.password === 'test2024') {
-        // 驗證成功，重定向到主頁或其他頁面
-        this.$router.push('/');
-      } else {
-        // 驗證失敗，顯示錯誤訊息
-        this.errorMessage = '帳號或密碼錯誤';
+    async handleLogin() {
+      try {
+        const response = await axios.post('https://fsiback.ptchen.tw/login', {
+          UserName: this.username,
+          Password: this.password,
+        });
+
+        if (response.data.success) {
+          // 登入成功，重定向到主頁
+          this.$router.push('/');
+        } else {
+          // 顯示錯誤訊息
+          this.errorMessage = response.data.message || '帳號或密碼錯誤';
+        }
+      } catch (error) {
+        // 處理請求錯誤，顯示通用錯誤訊息
+        this.errorMessage = '登入失敗，請稍後再試';
+        console.error('登入錯誤:', error);
       }
     },
     handleChangePassword() {
@@ -71,7 +87,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="sass" scoped>
 .flex
@@ -123,7 +138,12 @@ export default {
   line-height: 30px
   text-align: left
   background-color: #ffffff // 白色背景
-  color: #black 
+  color: #000000 // 黑色文字
+
+.error-message
+  color: red
+  font-size: 14px
+  margin-top: -10px
 
 .login-button
   width: 438px
